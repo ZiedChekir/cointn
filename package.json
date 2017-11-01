@@ -1,0 +1,27 @@
+{
+  "name": "mysite",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "auth0": "^2.6.0",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "connect-ensure-login": "^0.1.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "electron-storage": "^1.0.7",
+    "express": "^4.15.4",
+    "express-jwt": "^5.3.0",
+    "express-session": "^1.15.6",
+    "hbs": "~4.0.1",
+    "jwks-rsa": "^1.2.0",
+    "mongoose": "^4.8.5",
+    "morgan": "~1.8.1",
+    "passport": "^0.4.0",
+    "passport-auth0": "^0.6.0",
+    "serve-favicon": "~2.4.2"
+  }
+}
