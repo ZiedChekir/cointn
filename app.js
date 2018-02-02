@@ -9,9 +9,12 @@ const expressHbs  = require('express-handlebars');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
+var flash = require('connect-flash');
+var expressValidator = require('express-validator')
 // --------------ROUTES--------------------
 
 const index = require('./routes/index');
+const user = require('./routes/user');
 const prizes = require('./routes/prizes');
 const earncoins = require('./routes/earncoins');
 const invite = require('./routes/invite');
@@ -32,23 +35,45 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(
   session({
     secret: 'shhhhhhhhh',
-    resave: true,
-    saveUninitialized: true
+    resave: false,
+    saveUninitialized: false
   })
-);
+  );
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+    var namespace = param.split('.')
+    , root    = namespace.shift()
+    , formParam = root;
 
-
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//------------REq VARIABLES-------------------------
+//------------Global VARIABLES-------------------------
+
+
 app.use(function(req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
   res.locals.logged = false;
-  if (req.session.passport && typeof req.session.passport.user != 'undefined') {
+  if (req.user) {
     res.locals.logged = true;
     res.locals.user = req.user;
   }
@@ -59,6 +84,7 @@ app.use(function(req, res, next) {
 
 //----------------SET ROUTES----------------
 app.use('/', index);
+app.use('/user', user);
 app.use('/prizes', prizes);
 app.use('/earncoins',earncoins);//
 app.use('/invite',invite);

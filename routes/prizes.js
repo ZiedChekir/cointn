@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var games = require('../models/games');
 const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
+const ensureLoggedOut = require('connect-ensure-login').ensureLoggedOut();
 
 
 
@@ -10,16 +11,13 @@ mongoose.Promise = global.Promise;
 mongoose.createConnection('localhost:27017/ebonus');
 
 router.get('/',ensureLoggedIn,  function(req, res)  {
-	res.render('prizes/prizes')
-});
-router.get('/games',ensureLoggedIn,  function(req, res)  {
 	games.find(function(err,aviableGames){
 		
 		res.render('prizes/games',{games:aviableGames});
 	})
 	
 });
-router.get('/games/:game',ensureLoggedIn,  function(req, res)  {
+router.get('/:game',ensureLoggedIn,  function(req, res)  {
 	var game = req.params.game;
 	
 	games.find({title:game},function(err,doc){
@@ -34,3 +32,8 @@ router.get('/games/:game',ensureLoggedIn,  function(req, res)  {
 
 
 module.exports = router;
+
+//PRIZES PAGE is DISABLED FOR NOW
+// router.get('/',ensureLoggedIn,  function(req, res)  {
+// 	res.render('prizes/prizes')
+// });

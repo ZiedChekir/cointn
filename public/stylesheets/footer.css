@@ -1,9 +1,8 @@
 footer{
-  width: 100vw;
-  height: 60vh;
-
   background-color:#212227;
-
+   width: 100%;
+   margin:0;
+   padding: 0;
 }
 
 .social-container p {

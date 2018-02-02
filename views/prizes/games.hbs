@@ -1,29 +1,29 @@
 
- <link rel="stylesheet" type="text/css" href="/stylesheets/games.css">
 
- <section>
+
+<section>
     <div class="container">
         <div class="row">
             {{#each games}}
             <div class="col-md-4">
-                <a class="test" href="/prizes/games/{{this.title}}">
+                <a class="test" href="/prizes/{{this.title}}"style="text-decoration:none;">
                     <div class="card game" style="width: 304px;height:380px;">
-                         <img class="card-img-top game-img" src="{{this.imgPath}}" width="302px" height="200px" alt="{{this.title}}">
-                    <div class="card-block game-info">
-                        <h4 class="game-title">{{this.title}}</h4>
-                        <p class="game-description">{{this.description}}</p>
-                        <p>{{this.price}} Redeem</p>
+                        <img class="card-img-top game-img" src="{{this.imgPath}}" width="302px" height="200px" alt="{{this.title}}">
+                       <div class="card-block game-info">
+                        <h4 class="game-title"style="color:black;">{{this.title}}</h4>
+                        <p class="game-description"style="color:black;">{{this.description}}</p>
+                        <p style="color:black;">{{this.price}} Redeem</p>
                     </div>
-                </a>
 
+                </a>
             </div>
         </div>
         {{/each}}
 
     </div>
 </div>
-        
 
+<link rel="stylesheet" type="text/css" href="/stylesheets/games.css">
 
 
 
@@ -64,7 +64,7 @@
                 {{/each }}
             </div>
         
-    </section>--}}
+        </section>--}}
 
 
 
