@@ -2,6 +2,6 @@
 {{#each missionsToDisplay}}
 <p>{{this.title}}</p>
 <form method="post" action="/earncoins/missions/{{this.id}}">
-<button class="btn btn-success">Go</button>
+<button onClick="window.open('https://{{this.link}}')" class="btn btn-success">Go</button>
 </form>
 {{/each}}
