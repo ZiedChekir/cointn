@@ -31,11 +31,11 @@
           <div class="profile-userbuttons">
            <a class="btn btn-success btn-sm" href="/">Add picture</a>
            <a class="btn btn-danger btn-sm" href="/user/logout">Logout</a>
-
+           <a class="btn btn-warning" href="/profile/addcoin">add coin</a>
          </div>
          <!-- END SIDEBAR BUTTONS -->
          <!-- SIDEBAR MENU -->
-         
+
          <!-- END MENU -->
        </div>
      </div>
@@ -65,7 +65,17 @@
         </div>
         <center>
 
-
+          
+            {{#each orders}}
+            <h3>orders</h3>
+            <p>{{this.game.title}}</p>
+            <p>{{this.game.price}}</p>
+            <p>{{this.status}}</p>
+            {{else}}
+            <h3>no orders!</h3>
+            {{/each}}
+          
+          
 
           <strong>Powered by <a href="http://j.mp/metronictheme" target="_blank">KeenThemes</a></strong>
         </center>

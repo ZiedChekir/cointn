@@ -19,6 +19,26 @@ var UserSchema = mongoose.Schema({
 	name: {
 		type: String,
 		required:true
+	},
+	coins: {
+		type:String,
+		required:true
+	},
+	joindate: {
+		type:String,
+		required:true
+	},
+	lastdailybonus:{
+		type:String,
+		required:true
+	},
+	orders: {
+		type:Array,
+		required:false
+	},
+	completedMissions:{
+		type:Array,
+		required:false
 	}
 },{collection:'Users'});
 

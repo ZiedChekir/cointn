@@ -12,7 +12,13 @@
 				<p  style="color:black;" class="description">{{game.description}}</p>
 				<p 	style="color:black;">category:{{game.category}}</p>
 				<p 	style="color:black;">{{game.price}}coins</p>
-				<a 	style="color:black;" class="btn btn-success" href="#">Redeem</a>
+				{{#if ableToBuy}}
+				<a 	style="color:black;" class="btn btn-success" href="/prizes/{{game.title}}/redeem">Redeem</a>
+					
+					{{else}}
+					<a 	style="color:black;" class="btn btn-danger disabled" href="#">Redeem</a>
+				{{/if}}
+				
 			</div>
 
 		</div>

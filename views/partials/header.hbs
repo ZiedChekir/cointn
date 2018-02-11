@@ -6,23 +6,23 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item {{#if home}} active{{/if}} ">
+        <a class="nav-link"  href="/">Home </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/prizes">Prizes</a>
+      <li class="nav-item {{#if prizes}} active{{/if}}">
+        <a class="nav-link"  href="/prizes">Prizes</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/earncoins">Earn Coins</a>
+      <li class="nav-item {{#if earncoins}} active{{/if}}">
+        <a class="nav-link" href="/earncoins/missions">Earn Coins</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/invite">invite</a>
+      <li class="nav-item {{#if invite}} active{{/if}}">
+        <a class="nav-link"  href="/invite">invite</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item ">
         <a class="nav-link disabled" href="/coins">coins</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/Profile">Profile</a>
+      <li class="nav-item {{#if profile}} active{{/if}}">
+        <a class="nav-link" href="/profile">Profile</a>
       </li>
 
 
@@ -38,7 +38,10 @@
         <ul class="nav navbar-nav ml-auto">
           {{#if logged}}
           <li class="nav-item active">
-            <a class="nav-link" href="#"> Logged in as {{user.username}}<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">{{usercoins}} <img width="17px" height="28px"src="/images/dollar.svg" alt=" coins"></a></li>
+          
+          <li class="nav-item active">
+            <a class="nav-link" href="#"> Logged in as {{user.username}}<span class="sr-only">(current)</span></a></li>
             <li class="nav-item active">
               <a class="nav-link" href="/user/logout">logout<span class="sr-only">(current)</span></a>
             </li>
@@ -63,3 +66,15 @@
 
 
 
+
+<script type="text/javascript">
+$("ul a").on("click", function(e){
+
+  // e.preventDefault()
+  // $("ul").find(".active").removeClass("active");
+  //  $(this).parent().addClass("active")
+  console.log('clicked')});
+// $(".nav-item a").on("click", function(){
+//    $(".nav-item").find(".active").removeClass("active");
+   // $(this).parent().addClass("active")})1;
+</script>

@@ -5,7 +5,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/users');
 const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
 const ensureLoggedOut = require('connect-ensure-login').ensureLoggedOut();
-
+var Coins = require('../functionManagement/coins');
 // Register
 router.get('/register',ensureLoggedOut, function(req, res){
 	res.render('user/register');
@@ -24,6 +24,8 @@ router.post('/register', function(req, res){
 	var password = req.body.password;
 	var password2 = req.body.password2;
 
+	console.log(email)
+	console.log(username)
 	// Validation
 	req.checkBody('name', 'Name is required').notEmpty();
 	req.checkBody('email', 'Email is required').notEmpty();
@@ -31,32 +33,61 @@ router.post('/register', function(req, res){
 	req.checkBody('username', 'Username is required').notEmpty();
 	req.checkBody('password', 'Password is required').notEmpty();
 	req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
-//Error handling
-	var errors = req.validationErrors();
 
-	if(errors){
-		res.render('user/register',{
-			errors:errors
-		});
-	} else {
-		if(username)
-		var newUser = new User({
-			name: name,
-			email:email,
-			username: username,
-			password: password
-		});
-
-		User.createUser(newUser, function(err, user){
-			if(err) throw err;
-			console.log(user);
-		});
-
-		req.flash('success_msg', 'You are registered and can now login');
-
-		res.redirect('/user/login');
+	//Error handling
+	var errors = [];
+	var valErrors = req.validationErrors()
+	
+	if(valErrors){
+		for (var i = 0; i < valErrors.length; i++) {
+		 	errors.push(valErrors[i])
+		}
 	}
-});
+
+	User.findOne({'username':username}, function (err, user) {	
+	 	if (err) return handleError(err);	
+		if(user)
+			{
+				errors.push({msg:"username is already in use!"})				
+				res.render('user/register',{
+					errors:errors
+				});
+			}
+			else {
+				User.findOne({'email':email}, function (err, user) {
+					if (err) return handleError(err);
+					if(user){
+						errors.push({msg:'email is already in use !'})		
+						res.render('user/register',{
+							errors:errors
+						});			
+					}	
+					else{
+						var coins = new Coins()
+						var newUser = new User({
+						name: name,
+						email:email,
+						username: username,
+						password: password,
+						coins:coins.initializeCoins(),
+						joindate:getDate(),
+						lastdailybonus:getPreviousDate()
+						});
+						console.log(newUser.coins.length)
+						User.createUser(newUser, function(err, user){
+							if(err) throw err;		
+						});
+						req.flash('success_msg', 'You are registered and can now login');
+						res.redirect('/user/login');
+						}	
+					
+
+				});
+			}
+	});
+			
+})
+
 
 passport.use(new LocalStrategy(
 	function(username, password, done) {
@@ -89,15 +120,15 @@ passport.deserializeUser(function(id, done) {
 });
 
 router.post('/login',
-	passport.authenticate('local', {successRedirect:'/', failureRedirect:'/user/login',failureFlash: true}),
+	passport.authenticate('local', {successReturnToOrRedirect: '/', failureRedirect:'/user/login',failureFlash: true}),
 	function(req, res) {
 		res.redirect('/');
 	});
 
 router.get('/logout',ensureLoggedIn, function(req, res){
 	req.logout();
- 	req.session.destroy();
-    res.redirect('/');
+	req.session.destroy();
+	res.redirect('/');
 
 });
 
@@ -109,9 +140,13 @@ module.exports = router;
 
 
 
-
-
-
+var moment = require('moment')
+function getDate(){
+	return moment().format('DD/MM/YYYY HH:mm')
+}
+function getPreviousDate(){
+	return moment().subtract(1,'days').format('DD/MM/YYYY HH:mm')
+}
 
 
 

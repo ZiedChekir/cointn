@@ -11,6 +11,7 @@ const passport = require('passport');
 const session = require('express-session');
 var flash = require('connect-flash');
 var expressValidator = require('express-validator')
+var coinsModel = require('./functionManagement/coins');
 // --------------ROUTES--------------------
 
 const index = require('./routes/index');
@@ -27,6 +28,7 @@ mongoose.createConnection('localhost:27017/ebonus');
 // view engine setup
 app.engine('.hbs', expressHbs({defaultLayout:'layout',extname:'.hbs'}));
 app.set('view engine', '.hbs');
+var coinsInstance = new coinsModel();
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -65,17 +67,20 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //------------Global VARIABLES-------------------------
-
-
 app.use(function(req, res, next) {
+
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
   res.locals.user = req.user || null;
-  res.locals.logged = false;
+  
   if (req.user) {
     res.locals.logged = true;
     res.locals.user = req.user;
+    res.locals.usercoins = coinsInstance.decryptcoins(req.user.coins)
+    
+  }else{
+    res.locals.logged = false;
   }
   next();
 

@@ -11,9 +11,8 @@ mongoose.Promise = global.Promise;
 mongoose.connect('localhost:27017/ebonus');
 //routing
 router.get('/', function(req, res, next) {
-console.log(res.locals.user);
-console.log(res.locals.logged)
-     res.render('index');
+
+     res.render('index',{home:true});
 });
 
 

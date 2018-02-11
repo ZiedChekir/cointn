@@ -1,0 +1,7 @@
+{{> earncoinsheader}}
+{{#each missionsToDisplay}}
+<p>{{this.title}}</p>
+<form method="post" action="/earncoins/missions/{{this.id}}">
+<button class="btn btn-success">Go</button>
+</form>
+{{/each}}

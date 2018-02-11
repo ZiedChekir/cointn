@@ -5,7 +5,7 @@ const ensureLoggedOut = require('connect-ensure-login').ensureLoggedOut();
 
 
 router.get('/',ensureLoggedIn,  function(req, res)  {
-	res.render('invite')
+	res.render('invite',{invite:true})
 });
 
 

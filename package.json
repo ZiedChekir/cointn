@@ -13,6 +13,8 @@
     "connect-ensure-login": "^0.1.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.3",
+    "crypto": "^1.0.1",
+    "cryptr": "^2.0.0",
     "debug": "~2.6.3",
     "electron-storage": "^1.0.7",
     "express": "^4.15.4",
@@ -22,11 +24,13 @@
     "flash": "^1.1.0",
     "hbs": "~4.0.1",
     "jwks-rsa": "^1.2.0",
+    "moment": "^2.20.1",
     "mongoose": "^4.8.5",
     "morgan": "~1.8.1",
     "passport": "^0.4.0",
     "passport-auth0": "^0.6.0",
     "passport-local": "^1.0.0",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "~2.4.2",
+    "sha1": "^1.1.1"
   }
 }
