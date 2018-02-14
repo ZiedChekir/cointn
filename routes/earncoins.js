@@ -6,6 +6,10 @@ var coinsTran = require('../functionManagement/coinsTransaction')
 var coinsTranInstance =  new coinsTran()
 var Missions = require('../models/missions')
 var Users = require('../models/users')
+var Videos = require('../models/videos')
+var Coupons = require('../functionManagement/coupons')
+var couponsInstance = new Coupons()
+var couponsModel = require('../models/couponsData')
 
 router.get('/',ensureLoggedIn,  function(req, res)  {
 	res.redirect('/earncoins/missions')
@@ -74,7 +78,17 @@ router.post('/daily',ensureLoggedIn,function(req,res){
 
 
 router.get('/videos',ensureLoggedIn,function(req,res){
-	res.render('earncoins/videos',{videos:true})
+	Videos.getVideos(function(err,vids){
+		
+		var vid = vids[RandomVideo(0,vids.length )]
+		console.log(RandomVideo(0,vids.length +1))
+		res.render('earncoins/videos',{videos:true,videoToDisplay:vid})
+	})
+	
+})
+router.post('/videos',ensureLoggedIn,function(req,res){
+	coinsTranInstance.updateVideoCoins(res.locals.user._id)
+	res.redirect('/earncoins/videos')
 })
 
 
@@ -88,7 +102,33 @@ router.get('/invite',ensureLoggedIn,function(req,res){
 
 router.get('/code',ensureLoggedIn,function(req,res){
 	res.render('earncoins/code',{code:true})
+
 })
+
+router.post('/code',ensureLoggedIn,function(req,res){
+	var code = req.body.redeemcode
+ 	
+	if(couponsInstance.validateCoupons(code)){
+		couponsModel.queryCoupon(code,function(err,result){
+			if(err) return handleError(err)
+				if(!result){
+					res.redirect('/earncoins/code')
+				}else{
+					coinsTranInstance.updateCouponCoin(res.locals.user._id,result.couponCoins)
+					result.remove()
+					res.redirect('/earncoins/code')
+				}
+				
+			
+			
+		})
+	
+	}else{
+		res.redirect('/earncoins/code')
+	}
+	
+})
+
 
 
 router.get('/buy',ensureLoggedIn,function(req,res){
@@ -97,3 +137,8 @@ router.get('/buy',ensureLoggedIn,function(req,res){
 
 
 module.exports = router;
+
+
+function RandomVideo(min,max){
+			return Math.floor(Math.random() * (max - min) + min)
+		}

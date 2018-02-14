@@ -46,12 +46,12 @@ new game({
 })
 
 ];
-var done = 0;
+
 for (var i = 0; i < games.length; i++) {
 	games[i].save(function(err,result){
-		done++
-		if (done === games.length){
-			console.log(err);
+		if(err) return handleError(err)
+		if (i == games.length){
+			
 			console.log(result);
 			mongoose.disconnect();
 		}

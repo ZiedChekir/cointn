@@ -14,7 +14,7 @@ var moment = require('moment')
 
 
 
-module.exports = function coinsTran(){
+module.exports = function coinTran(){
 	this.updateDailyCoins = function (userToQuery){
 
 		Users.findOne({'_id':userToQuery},function(err,user){
@@ -39,20 +39,37 @@ module.exports = function coinsTran(){
 			}	
 		})
 	},
-	this.updateVideoCoins = function(userToQuery){
-		Users.findOne({'_id':userToQuery},function(err,user){
+	this.updateVideoCoins = function(userid){
+		Users.findOne({'_id':userid},function(err,user){
 			if (err) return handleError(err)
 				if(user){
 					missions.findOne({'_id':'5a7c250f05f40134e477f549'},function(err,result){
 						if(err) return handleError(err)			
-							user.coins = coinsInstance.encryptcoins((Number(coinsInstance.decryptcoins(user.coins)) + Number(coinsInstance.decryptcoins(result.vidoes))).toString());
+							// user.coins = coinsInstance.encryptcoins((Number(coinsInstance.decryptcoins(user.coins)) + Number(coinsInstance.decryptcoins(result.vidoes))).toString());
+						// console.log(coinsInstance.decryptcoins(user.coins))
+						// console.log(coinsInstance.decryptcoins( result.videos))
+						user.coins = coinsInstance.encryptcoins((Number(coinsInstance.decryptcoins(user.coins)) + Number(coinsInstance.decryptcoins(result.videos))).toString());
+
+						// console.log(Number(coinsInstance.decryptcoins(user.coins)) + Number(coinsInstance.decryptcoins(result.vidoes)))
 						user.save(function(err){
 							if (err) return handleError(err)
 						})			
 					})
 				}
 			})
-	}
+	},
+	this.updateCouponCoin = function(userid,couponcoins){
+		Users.findOne({'_id':userid},function(err,user){
+			if (err)return console.log(err)
+		
+			user.coins = coinsInstance.encryptcoins((Number(coinsInstance.decryptcoins(user.coins)) + Number(coinsInstance.decryptcoins(couponcoins))).toString())
+			
+			user.save(function(err){
+				
+							if (err) return console.log('error in SaveUsers')
+						})	
+	})
 
+}
 }
 

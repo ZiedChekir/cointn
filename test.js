@@ -123,8 +123,8 @@ function decrypt(text) {
 //         decrypted += decipher.final('utf-8');
 
 //         return decrypted;
-// 	}
-// }
+// // 	}
+// // }
 
 
 
@@ -135,56 +135,67 @@ function decrypt(text) {
 
 
 
-var missionsToFilter =[ 
-        {
-            "coins" : "84a8bffbee7b26905e4db5417bb00b5f:7bde3a43646d7fdfa170a24d3bdaee9c",
-            "link" : "www.example.com",
-            "description" : "bdazleazeqsdbqsdqsdsqdqs",
-            "title" : "clas of clans"
-        }, 
-         {
-            "coins" : "84a8bffbee7b26905e4db5417bb00b5f:7bde3a43646d7fdfa170a24d3bdaee9c",
-            "link" : "www.example.com",
-            "description" : "bdazleazeqsdbqsdqsdsqdqs",
-            "title" : "gdsg"
-        }, 
-         {
-            "coins" : "84a8bffbee7b26905e4db5417bb00b5f:7bde3a43646d7fdfa170a24d3bdaee9c",
-            "link" : "www.example.com",
-            "description" : "bdazleazeqsdbqsdqsdsqdqs",
-            "title" : "xw wxc"
-        }, 
-         {
-            "coins" : "84a8bffbee7b26905e4db5417bb00b5f:7bde3a43646d7fdfa170a24d3bdaee9c",
-            "link" : "www.example.com",
-            "description" : "bdazleazeqsdbqsdqsdsqdqs",
-            "title" : "happy"
-        }, 
-        {
-            "coins" : "64f84d0d88d443a75c972c5c4fa8f418:227e9f493cd2b5ebece17b8567a19113",
-            "link" : "www.haudsik.com",
-            "description" : "sdqsjldkjp^jzaijnf",
-            "title" : "world of warcraft"
-        }
-    ]
+// var missionsToFilter =[ 
+//         {
+//             "coins" : "84a8bffbee7b26905e4db5417bb00b5f:7bde3a43646d7fdfa170a24d3bdaee9c",
+//             "link" : "www.example.com",
+//             "description" : "bdazleazeqsdbqsdqsdsqdqs",
+//             "title" : "clas of clans"
+//         }, 
+//          {
+//             "coins" : "84a8bffbee7b26905e4db5417bb00b5f:7bde3a43646d7fdfa170a24d3bdaee9c",
+//             "link" : "www.example.com",
+//             "description" : "bdazleazeqsdbqsdqsdsqdqs",
+//             "title" : "gdsg"
+//         }, 
+//          {
+//             "coins" : "84a8bffbee7b26905e4db5417bb00b5f:7bde3a43646d7fdfa170a24d3bdaee9c",
+//             "link" : "www.example.com",
+//             "description" : "bdazleazeqsdbqsdqsdsqdqs",
+//             "title" : "xw wxc"
+//         }, 
+//          {
+//             "coins" : "84a8bffbee7b26905e4db5417bb00b5f:7bde3a43646d7fdfa170a24d3bdaee9c",
+//             "link" : "www.example.com",
+//             "description" : "bdazleazeqsdbqsdqsdsqdqs",
+//             "title" : "happy"
+//         }, 
+//         {
+//             "coins" : "64f84d0d88d443a75c972c5c4fa8f418:227e9f493cd2b5ebece17b8567a19113",
+//             "link" : "www.haudsik.com",
+//             "description" : "sdqsjldkjp^jzaijnf",
+//             "title" : "world of warcraft"
+//         }
+//     ]
 
 
-// var completedMiss=['happy','world of warcraft','xw wxc']
+// // var completedMiss=['happy','world of warcraft','xw wxc']
 
-// var v = missionsToFilter.filter(function(mission){		
-// 	for (var i = 0; i < completedMiss.length; i++) {
-// 		if(mission.title == completedMiss[i]){
-// 			return false
-// 		}
-// 	}
-// 	return mission
-// })
-var uniqueId = function() {
-  return 'id-' + Math.random().toString(36).substr(2, 16);
-};
-var count = 0
-while('id-yidvuj4svq9qie1q' != uniqueId()){
+// // var v = missionsToFilter.filter(function(mission){		
+// // 	for (var i = 0; i < completedMiss.length; i++) {
+// // 		if(mission.title == completedMiss[i]){
+// // 			return false
+// // 		}
+// // 	}
+// // 	return mission
+// // })
+
+// var count = 0
+// while(true){
+// 	console.log(RandomVideo(0,7))
 	
-	count++
-}
-console.log(count)
+// }
+var cc = require('coupon-code');
+// var coupon =  '9GkG-J99U-N6FD-MWW9'
+
+// if(cc.validate(coupon, { parts : 4 }).length > 0)
+// {
+// 	console.log('hi')
+// }
+console.log(cc.generate({ parts : 4 }))
+// var voucher_codes = require('voucher-code-generator');
+// console.log(voucher_codes.generate({
+//     pattern: "####-####-####-####",
+//     charset: voucher_codes.charset("alphanumeric")
+// }))
+console.log(cc.generate({parts:4}))

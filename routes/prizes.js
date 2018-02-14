@@ -24,22 +24,20 @@ router.get('/',ensureLoggedIn,  function(req, res)  {
 router.get('/:game',ensureLoggedIn,  function(req, res)  {
 	var game = req.params.game;	
 
-	games.findOne({title:game},function(err,doc){
-		function ableToBuy(){
-			return res.locals.usercoins >= doc.price ? true : false;
-		}
-		gameInfo = doc;
+	games.findOne({title:game},function(err,game){
 		
-		res.render('prizes/gameinfo',{game:doc,ableToBuy:true});
+		gameInfo = game;
+		
+		res.render('prizes/gameinfo',{game:game,ableToBuy:ableToBuy(res.locals.usercoins,game.price)});
 	})	
 });
 
 router.get('/:game/redeem',ensureLoggedIn,function(req,res){
 	var game = req.params.game;
 	games.findOne({title:game},function(err,game){
-		if(err) 
-			return handleError(err)
-		if(game){
+		if(err)  return handleError(err)
+		
+		if(game && ableToBuy(res.locals.usercoins,game.price)){
 			res.render('prizes/redeem',{game:game})
 		}else{
 			res.redirect('/prizes')
@@ -73,7 +71,9 @@ router.get('/:game/redeem/confirm',ensureLoggedIn,function(req,res){
 	}	
 })
 
-
+	function ableToBuy(usercoins,gameprice){
+			return usercoins >= gameprice ? true : false;
+		}
 
 module.exports = router;
 
