@@ -1,22 +1,111 @@
+  body{
+  margin: 0;
+  padding: 0;
+  font-family: 'Quicksand', sans-serif;
+}
+nav{
 
-section, div{
-
+    position:fixed;
+    top:0;
+    left:0;
     width: 100%;
-    word-wrap: break-word;
+    height:80px;
+    padding:10px 100px;
+    box-sizing: border-box;
+    transition: .3s;
 }
-.push{
-  background-color:#065A82 ;
+nav.black{
+  background:rgba(0,0,0,1);
+  height: 80px;
+  padding-top: 10px 100px;
+}
+nav .logo{
+  color:#fff;
+  padding :11px 20px;
+  height: 50px ;
+  float:left;
+  font-size: 24px;
+  transition: .3s;
 }
 
-.heading {
+nav.black .logo{
+  color:#fff;
 
+}
+nav ul {
+  list-style: none;
+  float:right;
+  margin:0;
+  padding: 0;
+  display: flex;
+}
+nav ul li{
+  list-style:none;
+}
+nav ul li a#nava {
+font-family: 'Quicksand';
+  line-height: 60px;
   
-  text-align: center;
-  font-family: 'Lato', sans-serif;
-  width: 100%;
-  height: 80vh;
-  background-color: #065A82;
+  padding:12px 30px;
+  text-transform: uppercase;
+  transition: .3s;
+  color:#fff;
+  text-decoration: none;
 }
+nav.black ul li a#nava  {
+  color:#fff;
+  text-decoration: none;
+}
+nav ul li a:focus{
+  outline:none;
+  transition: .3s;
+  color:black;
+}
+/*nav ul li a.active{
+  background: #E2472F;
+  color:#fff;
+  border-radius: 6px;
+  text-decoration: none;
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ .heading{
+  
+  width: 100%;
+  height: 100vh;
+   background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url('../images/gaming.jpg');
+  background-size:cover;
+  background-position: center;
+  background-attachment: fixed;
+  text-align: center;
+}
+
+
+
+/*.push{
+  background-color:#065A82 ;
+}*/
+
 #heading-content{
   padding-top: 170px;
 }
@@ -31,6 +120,12 @@ section, div{
   letter-spacing: 1px;
 }
 
+
+#about{
+  height: 100vh;
+}
+
+/*
 .about{
   padding-top: 50px;
   text-align: center;
@@ -75,3 +170,12 @@ margin-top: 50px;
 .apps div .thumbnail {
   margin:20px 0px 20px 0px;
 }
+
+#test{
+  background-color: #33414A;
+  height: 100px;
+  width: 100px;
+  box-sizing: border-box;
+  transition: .3s;
+}
+*/

@@ -1,4 +1,4 @@
-
+/////---------DO NOT CHANGE ONLY WITH PERMISSION ----------------------------
 // Configure Passport to use Auth0
 var Auth0Strategy = require('passport-auth0');
 var passport = require('passport');

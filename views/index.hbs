@@ -1,16 +1,49 @@
 
 
+
 <section class="heading">
 	<div id="heading-content">
 		<h1>The Best and most trusted platform </h1>
-		<h3>to win games and much more!</h3>
+		<h3>to win Steam Games, Riot Points and much more!</h3>
+		{{#if logged}}
 		<h3>Earn Coins Now</h3>
 		<a href="https://www.google.com" class="btn btn-success">Earn Coins</a>
-
+		{{else}}
+		<h3>Join us now</h3>
+		<a href="/user/register" class="btn btn-success">Register</a>
+		<a href="/user/login" class="btn btn-success">Login</a>
+		{{/if}}
+		
 	</div>
 </section>
+<section id="about">
+	<h3>What is FreeRewards ?</h3>
+	<p>FreeRewards is a plateform where you can get the latests steam games, origin games, Riot Points and gift cards for FREE !<br>
+		All you have to do is earn coins by completing daily missions,surveys, watching vidoes check <a href="/earncoins">Earncoins</a> for more information.<br>
+
+	</p>
+</section >
+
+
+
+
+
+<script type="text/javascript">
+if({{home}}){
+	$('nav').removeClass('black')
+}
+$(window).on('scroll',function(){
+	if($(window).scrollTop()){
+		$('nav').addClass('black')
+	}else{
+		$('nav').removeClass('black')
+	}
+})
+</script>
 
 
 
 
 <link rel="stylesheet" href="/stylesheets/index.css"> 
+
+

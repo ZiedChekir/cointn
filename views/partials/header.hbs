@@ -1,4 +1,34 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+<div class="wrapperr">
+  <nav class="black">
+      <div class="logo"> <a class="logotext" href="/"> FreeRewards</a></div>
+      <ul>       
+        <li><a class="nava" href="/prizes">Prizes</a></li>
+        <li><a class="nava" href="/earncoins">Earn Coins</a></li>        
+        {{#if logged}}
+          <li><a class="nava" href="/profile">Profile</a></li>
+          <li ><a class="nava"  href="#">{{usercoins}} <img width="17px" height="28px"src="/images/dollar.svg" alt=" coins"></a></li>         
+          <li ><a class="nava"  href="#"> Logged in as {{user.username}}</a></li>
+          <li ><a class="nava"  class="nav-link" href="/user/logout">logout</a></li>
+        {{else}}
+          <li ><a class="nava"  href="/user/login">login</a></li>
+          <li ><a class="nava"  href="/user/register">register</a></li>
+        {{/if}}
+      </ul>
+
+  </nav>
+
+</div>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/header.css"> 
+
+
+
+
+
+{{!-- <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -26,14 +56,14 @@
       </li>
 
 
-          {{!-- <li class="nav-item dropdown">
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <a class="dropdown-item" href="#">Action</a>
               <a class="dropdown-item" href="#">Another action</a>
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
-          </li> --}}
+          </li>
         </ul>
         <ul class="nav navbar-nav ml-auto">
           {{#if logged}}
@@ -55,26 +85,27 @@
             {{/if}}
           </ul>
 
-     {{!--    <form class="form-inline my-2 my-md-0">
+        <form class="form-inline my-2 my-md-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form> --}}
+        </form> 
       </div>
     </nav>
 
 
 
 
+ --}}
 
 
-<script type="text/javascript">
-$("ul a").on("click", function(e){
 
-  // e.preventDefault()
-  // $("ul").find(".active").removeClass("active");
-  //  $(this).parent().addClass("active")
-  console.log('clicked')});
-// $(".nav-item a").on("click", function(){
-//    $(".nav-item").find(".active").removeClass("active");
-   // $(this).parent().addClass("active")})1;
-</script>
+
+
+
+
+
+
+
+
+
+
