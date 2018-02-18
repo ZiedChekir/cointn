@@ -24,8 +24,6 @@ router.post('/register', function(req, res){
 	var password = req.body.password;
 	var password2 = req.body.password2;
 
-	console.log(email)
-	console.log(username)
 	// Validation
 	req.checkBody('name', 'Name is required').notEmpty();
 	req.checkBody('email', 'Email is required').notEmpty();
@@ -42,6 +40,9 @@ router.post('/register', function(req, res){
 		for (var i = 0; i < valErrors.length; i++) {
 		 	errors.push(valErrors[i])
 		}
+		
+		return res.render('user/register',{errors:errors})
+		
 	}
 
 	User.findOne({'username':username}, function (err, user) {	
